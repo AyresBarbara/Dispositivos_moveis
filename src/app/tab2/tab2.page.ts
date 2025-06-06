@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { DataStorageService } from '../services/data-storage.service';
 
 @Component({
   selector: 'app-tab2',
@@ -8,6 +9,11 @@ import { Component } from '@angular/core';
 })
 export class Tab2Page {
 
-  constructor() {}
+  livroFavorito: any = null;
 
+  constructor(private storage: DataStorageService) {}
+
+  async ngOnInit(){
+    this.livroFavorito = await this.storage.getFavoriteBook();
+  }
 }

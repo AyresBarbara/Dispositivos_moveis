@@ -1,17 +1,24 @@
-<ion-header [translucent]="true">
+<ion-header>
   <ion-toolbar>
-    <ion-title>
-      Tab 2
-    </ion-title>
+    <ion-title>Favoritos</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Tab 2</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content *ngIf="livroFavorito.length > 0">
+  <ion-card *ngFor="let livro of livroFavorito">
+    <img [src]="livro.cover" alt="Capa do Livro">
+    <ion-card-header>
+      <ion-card-title>{{ livro.title }}</ion-card-title>
+      <ion-card-subtitle>Lançado em: {{ livro.releaseDate }}</ion-card-subtitle>
+    </ion-card-header>
+    <ion-card-content>
+      <p>{{ livro.description }}</p>
+    </ion-card-content>
+  </ion-card>
+</ion-content>
 
-  <app-explore-container name="Tab 2 page"></app-explore-container>
+<ion-content *ngIf="livroFavorito.length === 0">
+  <ion-text color="medium">
+    <p style="text-align: center; margin-top: 20px;">Nenhum livro favoritado ainda.</p>
+  </ion-text>
 </ion-content>
